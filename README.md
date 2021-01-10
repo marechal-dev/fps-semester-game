@@ -8,7 +8,8 @@
 **(Code) Development Stages**:
 - [x] Camera and Movement
 - [ ] Enemy AI
-- [ ] Damage System
+- [x] Damage System (Player to Enemy)
+- [ ] Damage System (Enemy to Player)
 - [ ] Weapon Switching
 - [ ] Reloading
 
