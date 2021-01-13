@@ -9,6 +9,8 @@ public class EnemysAI : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
+    Animator enemyAnimator;
+
     //Enemy Stats
     public float damage = 10f;
     public float range = 100f;
@@ -32,8 +34,13 @@ public class EnemysAI : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Player").transform;
+        player = GameObject.Find("PlayerObj").transform;
         agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Start()
+    {
+        enemyAnimator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -47,19 +54,30 @@ public class EnemysAI : MonoBehaviour
 
     private void Patroling()
     {
+        Debug.Log("Patroling");
+
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
+        {
+            enemyAnimator.SetBool("isWalking", true);
             agent.SetDestination(walkPoint);
-
+        }
+            
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         if (distanceToWalkPoint.magnitude < 1f)
+        {
+            enemyAnimator.SetBool("isWalking", false);
             walkPointSet = false;
+        }
+            
     }
 
     private void SearchWalkPoint()
     {
+        Debug.Log("Search Walk Point");
+
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
@@ -71,11 +89,16 @@ public class EnemysAI : MonoBehaviour
 
     private void ChasePlayer()
     {
+        Debug.Log("Chase Player");
+
+        enemyAnimator.SetBool("isChasingPlayer", true);
         agent.SetDestination(player.position);
     }
 
     private void AttackPlayer()
     {
+        Debug.Log("Attack Player");
+
         agent.SetDestination(transform.position);
 
         transform.LookAt(player);
@@ -83,10 +106,11 @@ public class EnemysAI : MonoBehaviour
         if (!alreadyAttacked)
         {
             //Attack code:
+            enemyAnimator.SetBool("isShooting", true);
             muzzleFlash.Play();
 
             RaycastHit hitInfo;
-            if(Physics.Raycast(agent.transform.position, player.transform.position, out hitInfo, range))
+            if(Physics.Raycast(transform.position, player.transform.position, out hitInfo, range))
             {
                 Debug.Log(hitInfo.transform.name);
 
@@ -100,12 +124,15 @@ public class EnemysAI : MonoBehaviour
             //================
 
             alreadyAttacked = true;
+            enemyAnimator.SetBool("isShooting", false);
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
 
     private void ResetAttack()
     {
+        Debug.Log("Reset Attack");
+        enemyAnimator.SetBool("isReloading", true);
         alreadyAttacked = false;
     }
 }
