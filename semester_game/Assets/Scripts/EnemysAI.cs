@@ -56,10 +56,16 @@ public class EnemysAI : MonoBehaviour
     {
         Debug.Log("Patroling");
 
-        if (!walkPointSet) SearchWalkPoint();
+        if (!walkPointSet)
+        {
+            Debug.Log("On waypoint, searching for another one");
+
+            SearchWalkPoint();
+        }
 
         if (walkPointSet)
         {
+            Debug.Log("Going to waypoint");
             enemyAnimator.SetBool("isWalking", true);
             agent.SetDestination(walkPoint);
         }
@@ -68,6 +74,7 @@ public class EnemysAI : MonoBehaviour
 
         if (distanceToWalkPoint.magnitude < 1f)
         {
+            Debug.Log("On waypoint");
             enemyAnimator.SetBool("isWalking", false);
             walkPointSet = false;
         }
@@ -84,7 +91,10 @@ public class EnemysAI : MonoBehaviour
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        {
+            Debug.Log("Waypoint is on ground");
             walkPointSet = true;
+        }
     }
 
     private void ChasePlayer()
@@ -126,13 +136,13 @@ public class EnemysAI : MonoBehaviour
             alreadyAttacked = true;
             enemyAnimator.SetBool("isShooting", false);
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            enemyAnimator.SetBool("isReloading", true);
         }
     }
 
     private void ResetAttack()
     {
         Debug.Log("Reset Attack");
-        enemyAnimator.SetBool("isReloading", true);
         alreadyAttacked = false;
     }
 }
