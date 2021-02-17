@@ -2,7 +2,7 @@
 
 This is just a **simple** FPS Game for the end of the semester on our university.
 
-## ALL THE ASSETS ARE FROM THE UNITY ASSET STORE, NONE OF THEY WHERE MADE BY US
+## ALL THE ASSETS ARE FROM THE UNITY ASSET STORE, NONE OF THEY WAS MADE BY US
 
 **(Code) Development Stages**:
 
