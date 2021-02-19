@@ -110,9 +110,7 @@ public class EnemysAI : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            ///Attack Code here
             Shoot();
-            ///================
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
