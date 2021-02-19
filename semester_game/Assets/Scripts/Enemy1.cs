@@ -13,7 +13,6 @@ public class Enemy1 : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
 
-
     public void TakeDamage(float amount)
     {
         health -= amount;

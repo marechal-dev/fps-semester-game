@@ -4,6 +4,9 @@ using UnityEngine.AI;
 public class EnemysAI : MonoBehaviour
 {
     public NavMeshAgent agent;
+    public GameObject enemyHead;
+    public GameObject enemyGun;
+    public GameObject enemyArm;
 
     public Transform player;
 
@@ -13,7 +16,7 @@ public class EnemysAI : MonoBehaviour
 
     public Animator animator;
 
-    // Patroling
+    // Patrolling
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
@@ -21,7 +24,7 @@ public class EnemysAI : MonoBehaviour
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    public float damage;
+    public float damage = 50;
 
     // Chasing
     public float sightRange, attackRange;
@@ -41,7 +44,7 @@ public class EnemysAI : MonoBehaviour
         if(!playerInSightRange && !playerInAttackRange)
         {
             animator.SetBool("isWalking", true);
-            Patroling();
+            Patrolling();
         }
 
         if (playerInSightRange && !playerInAttackRange)
@@ -57,7 +60,7 @@ public class EnemysAI : MonoBehaviour
         }
     }
 
-    private void Patroling()
+    private void Patrolling()
     {
 
         if(!walkPointSet)
@@ -103,7 +106,7 @@ public class EnemysAI : MonoBehaviour
     {
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player);
+        transform.LookAt(player, transform.up);
 
         if (!alreadyAttacked)
         {
