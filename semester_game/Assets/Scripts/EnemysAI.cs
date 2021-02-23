@@ -65,13 +65,11 @@ public class EnemysAI : MonoBehaviour
 
         if(!walkPointSet)
         {
-            Debug.Log("Searching for a Walk Point...");
             SearchWalkPoint();
         }
 
         if (walkPointSet)
         {
-            Debug.Log("Walk Point Set: Going to walkPoint");
             agent.SetDestination(walkPoint);
         }
 
@@ -79,7 +77,6 @@ public class EnemysAI : MonoBehaviour
 
         if (distanceToWalkPoint.magnitude < 1f)
         {
-            Debug.Log("Distance to WalkPoint Less than 1f, walkPointSet = False");
             walkPointSet = false;
         }
     }
