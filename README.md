@@ -1,6 +1,6 @@
 # FPS Game - No Title
 
-This is just a **simple** FPS Game for the end of the semester on our university.
+This is just a **simple** FPS Game
 
 ## ALL THE ASSETS ARE FROM THE UNITY ASSET STORE, NONE OF THEY WAS MADE BY US
 
