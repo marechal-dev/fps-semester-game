@@ -9,7 +9,7 @@ This is just a **simple** FPS Game
 - [x] Camera and Movement
 - [x] Enemy AI
 - [x] Damage System (Player to Enemy)
-- [ ] Damage System (Enemy to Player)
+- [x] Damage System (Enemy to Player)
 - [ ] Weapon Switching
 - [ ] Reloading
 
