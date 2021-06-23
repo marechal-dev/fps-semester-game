@@ -1948,7 +1948,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 2136018627}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -2053,9 +2053,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1879069028}
   - component: {fileID: 1879069027}
-  - component: {fileID: 1879069026}
   - component: {fileID: 1879069029}
   - component: {fileID: 1879069030}
+  - component: {fileID: 1879069026}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
